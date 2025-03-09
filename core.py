@@ -39,35 +39,39 @@ class HackingTool(object):
 
     PROJECT_URL: str = ""
 
-    def __init__(self, options = None, installable: bool = True,
-                 runnable: bool = True):
+    def __init__(
+        self, options=None, installable: bool = True, runnable: bool = True
+    ):
         options = options or []
         if isinstance(options, list):
             self.OPTIONS = []
             if installable:
-                self.OPTIONS.append(('Install', self.install))
+                self.OPTIONS.append(("Install", self.install))
             if runnable:
-                self.OPTIONS.append(('Run', self.run))
+                self.OPTIONS.append(("Run", self.run))
             self.OPTIONS.extend(options)
         else:
             raise Exception(
-                "options must be a list of (option_name, option_fn) tuples")
+                "options must be a list of (option_name, option_fn) tuples"
+            )
 
     def show_info(self):
         desc = self.DESCRIPTION
         if self.PROJECT_URL:
-            desc += '\n\t[*] '
+            desc += "\n\t[*] "
             desc += self.PROJECT_URL
         os.system(f'echo "{desc}"|boxes -d boy | lolcat')
 
-    def show_options(self, parent = None):
+    def show_options(self, parent=None):
         clear_screen()
         self.show_info()
         for index, option in enumerate(self.OPTIONS):
             print(f"[{index + 1}] {option[0]}")
         if self.PROJECT_URL:
             print(f"[{98}] Open project page")
-        print(f"[{99}] Back to {parent.TITLE if parent is not None else 'Exit'}")
+        print(
+            f"[{99}] Back to {parent.TITLE if parent is not None else 'Exit'}"
+        )
         option_index = input("Select an option : ").strip()
         try:
             option_index = int(option_index)
@@ -87,7 +91,7 @@ class HackingTool(object):
         except Exception:
             print_exc()
             input("\n\nPress ENTER to continue:").strip()
-        return self.show_options(parent = parent)
+        return self.show_options(parent=parent)
 
     def before_install(self):
         pass
@@ -103,7 +107,7 @@ class HackingTool(object):
         print("Successfully installed!")
 
     def before_uninstall(self) -> bool:
-        """ Ask for confirmation from the user and return """
+        """Ask for confirmation from the user and return"""
         return True
 
     def uninstall(self):
@@ -129,7 +133,7 @@ class HackingTool(object):
     def after_run(self):
         pass
 
-    def is_installed(self, dir_to_check = None):
+    def is_installed(self, dir_to_check=None):
         print("Unimplemented: DO NOT USE")
         return "?"
 
@@ -150,17 +154,19 @@ class HackingToolsCollection(object):
         # os.system(f'echo "{self.DESCRIPTION}"|boxes -d boy | lolcat')
         # print(self.DESCRIPTION)
 
-    def show_options(self, parent = None):
+    def show_options(self, parent=None):
         clear_screen()
         self.show_info()
         for index, tool in enumerate(self.TOOLS):
             print(f"[{index} {tool.TITLE}")
-        print(f"[{99}] Back to {parent.TITLE if parent is not None else 'Exit'}")
+        print(
+            f"[{99}] Back to {parent.TITLE if parent is not None else 'Exit'}"
+        )
         tool_index = input("Choose a tool to proceed: ").strip()
         try:
             tool_index = int(tool_index)
             if tool_index in range(len(self.TOOLS)):
-                ret_code = self.TOOLS[tool_index].show_options(parent = self)
+                ret_code = self.TOOLS[tool_index].show_options(parent=self)
                 if ret_code != 99:
                     input("\n\nPress ENTER to continue:").strip()
             elif tool_index == 99:
@@ -173,4 +179,4 @@ class HackingToolsCollection(object):
         except Exception:
             print_exc()
             input("\n\nPress ENTER to continue:").strip()
-        return self.show_options(parent = parent)
+        return self.show_options(parent=parent)

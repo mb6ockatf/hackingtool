@@ -18,8 +18,10 @@ from tools.others.wifi_jamming import WifiJammingTools
 
 class HatCloud(HackingTool):
     TITLE = "HatCloud(Bypass CloudFlare for IP)"
-    DESCRIPTION = "HatCloud build in Ruby. It makes bypass in CloudFlare for " \
-                  "discover real IP."
+    DESCRIPTION = (
+        "HatCloud build in Ruby. It makes bypass in CloudFlare for "
+        "discover real IP."
+    )
     INSTALL_COMMANDS = ["git clone https://github.com/HatBashBR/HatCloud.git"]
     PROJECT_URL = "https://github.com/HatBashBR/HatCloud"
 
@@ -42,5 +44,5 @@ class OtherTools(HackingToolsCollection):
         SocialMediaFinderTools(),
         PayloadInjectorTools(),
         WebCrawlingTools(),
-        MixTools()
+        MixTools(),
     ]

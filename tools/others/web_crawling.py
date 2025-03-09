@@ -10,7 +10,7 @@ class GoSpider(HackingTool):
     PROJECT_URL = "https://github.com/jaeles-project/gospider"
 
     def __init__(self):
-        super(GoSpider, self).__init__(runnable = False)
+        super(GoSpider, self).__init__(runnable=False)
 
 
 class WebCrawlingTools(HackingToolsCollection):

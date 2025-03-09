@@ -59,7 +59,7 @@ all_tools = [
     XSSAttackTools(),
     SteganographyTools(),
     OtherTools(),
-    ToolManager()
+    ToolManager(),
 ]
 
 
@@ -68,25 +68,29 @@ class AllTools(HackingToolsCollection):
     TOOLS = all_tools
 
     def show_info(self):
-        print(logo + '\033[0m \033[97m')
+        print(logo + "\033[0m \033[97m")
 
 
 if __name__ == "__main__":
     try:
-        if system() == 'Linux':
+        if system() == "Linux":
             fpath = os.path.expanduser("~/hackingtoolpath.txt")
             if not os.path.exists(fpath):
-                os.system('clear')
+                os.system("clear")
                 # run.menu()
-                print("""
+                print(
+                    """
                         [@] Set Path (All your tools will be installed in that directory)
                         [1] Manual 
                         [2] Default
-                """)
+                """
+                )
                 choice = input("Z4nzu =>> ").strip()
 
                 if choice == "1":
-                    inpath = input("Enter Path (with Directory Name) >> ").strip()
+                    inpath = input(
+                        "Enter Path (with Directory Name) >> "
+                    ).strip()
                     with open(fpath, "w") as f:
                         f.write(inpath)
                     print("Successfully Set Path to: {}".format(inpath))

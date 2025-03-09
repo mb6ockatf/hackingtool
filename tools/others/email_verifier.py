@@ -8,7 +8,7 @@ class KnockMail(HackingTool):
     DESCRIPTION = "KnockMail Tool Verify If Email Exists"
     INSTALL_COMMANDS = [
         "git clone https://github.com/heywoodlh/KnockMail.git",
-        "cd KnockMail;sudo pip3 install -r requirements.txt"
+        "cd KnockMail;sudo pip3 install -r requirements.txt",
     ]
     RUN_COMMANDS = ["cd KnockMail;python3 knockmail.py"]
     PROJECT_URL = "https://github.com/heywoodlh/KnockMail"
@@ -17,4 +17,3 @@ class KnockMail(HackingTool):
 class EmailVerifyTools(HackingToolsCollection):
     TITLE = "Email Verify tools"
     TOOLS = [KnockMail()]
-    
